@@ -1,131 +1,66 @@
-import time
-from collections import deque
+full_name = "Luigie Glinofria Sanchez"
+year = 3
+section = "BSCS 3A"
+distance = 6.5
+working_student = True
 
-print(' ')
-print("====== Campus Search System ======")
+subjects = ["Computer Architecture and Organization", "Networking and Communication", "Machine Learning"]
 
-def bfs(graph, start, target):
-    visited = set()
-    queue = deque([start])
-    operations = 0
+print("--- STUDENT INFORMATION ---")
+print("Full Name:", full_name)
+print("Year Level:", year)
+print("Section:", section)
+print("Distance from Home to School:", distance, "km")
+print("Working Student:", working_student)
+print("Subjects:", subjects)
 
-    while queue:
-        operations += 1
-        node = queue.popleft()
-        if node == target:
-            return True, operations
-        visited.add(node)
-        for neighbor in graph.get(node, []):
-            if neighbor not in visited and neighbor not in queue:
-                queue.append(neighbor)
-    return False, operations
+print("\n--- IF-ELSE ---")
 
+if working_student:
+    print(full_name, "is a working student.")
+else:
+    print(full_name, "is not a working student.")
 
-def dfs(graph, start, target):
-    visited = set()
-    stack = [start]
-    operations = 0
+print("\n--- FOR LOOP ---")
 
-    while stack:
-        operations += 1
-        node = stack.pop()
-        if node == target:
-            return True, operations
-        if node not in visited:
-            visited.add(node)
-            for neighbor in reversed(graph.get(node, [])):
-                if neighbor not in visited:
-                    stack.append(neighbor)
-    return False, operations
+for subject in subjects:
+    print("Subject:", subject)
+
+print("\n--- WHILE LOOP ---")
+
+current_year = 1
+
+while current_year <= year:
+    print("Completed/Current Year:", current_year)
+    current_year += 1
 
 
-def campus_system():
-    students = [
-        {"ID": 1, "student_id": "0424-3492", "veg": False, "review": []},
-        {"ID": 2, "student_id": "0424-5324", "veg": False, "review": []},
-        {"ID": 3, "student_id": "0424-7643", "veg": False, "review": []},
-        {"ID": 4, "student_id": "0424-0901", "veg": False, "review": []}
-    ]
+print("\n--- MEMORY SIMULATION ---")
 
-    buildings_graph = {
-        "Registrar": ["B.A.O", "OSAS"],
-        "B.A.O": ["Registrar", "CCS DEAN's OFFICE"],
-        "OSAS": ["Registrar", "Cafeteria"],
-        "CCS DEAN's OFFICE": ["B.A.O", "Cafeteria"],
-        "Cafeteria": ["OSAS", "CCS DEAN's OFFICE"]
-    }
+memory = [
+    full_name,
+    year,
+    section,
+    distance,
+    working_student,
+    subjects
+]
 
-    while True:
-        print("1. Search Student ID")
-        print("2. Search Building")
-        print("3. Exit")
+print("Student information stored in memory:")
 
-        choose = input("Choose an Option: ")
+for index in range(len(memory)):
+    print("Memory Location", index, ":", memory[index])
 
-        if choose == "1":
-            print("\nSTUDENT IDs")
-            print('='*30)
-            for s in students:
-                print(s["student_id"])
-
-            target = input("\nEnter Student ID to search: ")
-
-            dataset_size = len(students)
-            operations = 0
-            found = False
-
-            start_time = time.time()
-
-            for s in students:
-                operations += 1
-                if s["student_id"] == target:
-                    found = True
-                    break
-
-            end_time = time.time()
-
-            print("\nResult:", "Found" if found else "Not Found")
-            print("Dataset Size:", dataset_size)
-            print("Operations:", operations)
-            print("Execution Time:", f"{end_time - start_time:.6f} seconds")
-            print('-'*30)
-
-        elif choose == "2":
-            print("\nList of Buildings:")
-            print("="*30)
-            for b in buildings_graph.keys():
-                print("-", b)
-
-            start_building = input("Enter Starting Building: ")
-            target_building = input("Enter Target Building: ")
-            algorithm = input("Choose Algorithm (BFS/DFS): ").upper()
-
-            dataset_size = len(buildings_graph)
-
-            start_time = time.time()
-
-            if algorithm == "BFS":
-                found, operations = bfs(buildings_graph, start_building, target_building)
-            elif algorithm == "DFS":
-                found, operations = dfs(buildings_graph, start_building, target_building)
-            else:
-                print("Invalid algorithm choice")
-                continue
-
-            end_time = time.time()
-
-            print("\nResult:", "Found" if found else "Not Found")
-            print("Dataset Size:", dataset_size)
-            print("Operations:", operations)
-            print("Execution Time:", f"{end_time - start_time:.6f} seconds")
-            print('-'*30)
-
-        elif choose == "3":
-            print("DONE")
-            break
-
-        else:
-            print("Invalid choice. Choose Again")
+print("\nReading specific memory locations:")
+print("Memory[0] - Full Name:", memory[0])
+print("Memory[1] - Year:", memory[1])
+print("Memory[2] - Section:", memory[2])
+print("Memory[3] - Distance:", memory[3])
+print("Memory[4] - Working Student:", memory[4])
+print("Memory[5] - Subjects:", memory[5])
 
 
-campus_system()
+print("\n--- CPU AND MEMORY INTERACTION ---")
+print("The CPU requests student data from memory.")
+print("Memory provides the requested data to the CPU.")
+print("CPU processes the data and displays the result.")
