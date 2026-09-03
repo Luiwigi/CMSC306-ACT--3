@@ -1,4 +1,4 @@
-decimal = int(input("Enter a decimal number (0-255): "))
+decimal = int(input("Enter a decimal number (0-300): "))
 
 if 0 <= decimal <= 300:
     binary = format(decimal, "08b")
