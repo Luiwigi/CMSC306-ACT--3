@@ -10,4 +10,4 @@ if 0 <= decimal <= 300:
     print("Octal:       ", octal)
     print("Hexadecimal: ", hexadecimal)
 else:
-    print("Error: Please enter a number between 0 and 255.")
+    print("Error: Please enter a number between 0 and 300.")
